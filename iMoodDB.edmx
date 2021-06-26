@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="iMoodModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'iMood.dbo.MoodResult' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MoodResult">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mood" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="Age" Type="nvarchar" MaxLength="50" />
+          <Property Name="Occupation" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_MoodResult_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="MoodResult" Type="Self.MoodResult" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MoodResult">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MoodResult_Users1">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="MoodResult" Type="Self.MoodResult" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MoodResult">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="iMoodModelStoreContainer">
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MoodResult" EntityType="Self.MoodResult" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MoodResult].[ID] AS [ID], 
+    [MoodResult].[Mood] AS [Mood]
+    FROM [dbo].[MoodResult] AS [MoodResult]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_MoodResult_Users" Association="Self.FK_MoodResult_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="MoodResult" EntitySet="MoodResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MoodResult_Users1" Association="Self.FK_MoodResult_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="MoodResult" EntitySet="MoodResult" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="iMoodModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Occupation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MoodResult" Relationship="Self.FK_MoodResult_Users" FromRole="Users" ToRole="MoodResult" />
+          <NavigationProperty Name="MoodResult1" Relationship="Self.FK_MoodResult_Users1" FromRole="Users" ToRole="MoodResult" />
+        </EntityType>
+        <EntityType Name="MoodResult">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mood" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Self.FK_MoodResult_Users" FromRole="MoodResult" ToRole="Users" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_MoodResult_Users1" FromRole="MoodResult" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_MoodResult_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="MoodResult" Type="Self.MoodResult" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MoodResult">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MoodResult_Users1">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="MoodResult" Type="Self.MoodResult" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MoodResult">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="iMoodEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="MoodResults" EntityType="Self.MoodResult" />
+          <AssociationSet Name="FK_MoodResult_Users" Association="Self.FK_MoodResult_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="MoodResult" EntitySet="MoodResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MoodResult_Users1" Association="Self.FK_MoodResult_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="MoodResult" EntitySet="MoodResults" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="iMoodModelStoreContainer" CdmEntityContainer="iMoodEntities">
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="iMoodModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MoodResults">
+            <EntityTypeMapping TypeName="iMoodModel.MoodResult">
+              <MappingFragment StoreEntitySet="MoodResult">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Mood" ColumnName="Mood" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
