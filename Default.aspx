@@ -20,7 +20,7 @@
         #table1{
             border-collapse: collapse;
             width: 50%;
-            border: 1px solid #ddd;
+            
 }
         }
         tr, td {
@@ -190,12 +190,118 @@
     cursor: pointer;
 }
 
+body {
+  margin: 0;
+  min-width: 250px;
+}
+
+/* Include the padding and border in an element's total width and height */
+* {
+  box-sizing: border-box;
+}
+
+/* Remove margins and padding from the list */
+#todo {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the list items */
+.myUL li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: none;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+  
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+.myUL li:nth-child(odd) {
+  background: #f9f9f9;
+}
+
+/* Darker background-color on hover */
+.myUL li:hover {
+  background: #ddd;
+}
+
+/* When clicked on, add a background color and strike out text */
+.myUL li.checked {
+  background: #888;
+  color: #fff;
+  text-decoration: line-through;
+}
+
+/* Add a "checked" mark when clicked on */
+.myUL li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
 
 
 
 
+/* Style the header */
+.header {
+  background-color: #006666;
+  padding: 30px 40px;
+  color: white;
+  text-align: center;
+}
 
-    </style>
+/* Clear floats after the header */
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the input */
+#myInput {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  width: 75%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+
+/* Style the "Add" button */
+.addBtn {
+  padding: 10px;
+  width: 25%;
+  background: #d9d9d9;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0;
+}
+
+.addBtn:hover {
+  background-color: #bbb;
+}
+
+        </style>
      </head>
         <body>
         
@@ -247,14 +353,15 @@
         <section class="why-us" id="home">
             <div class="section-timeline">
                 <div class="container">
-                    <h2 class="heading"><span class="bold-green">Personal</span>  Info </h2>
-                    <table id ="table1">
+                    <h2 class="heading js-wp-1"><span class="bold-green">Personal</span>  Info </h2>
+                   
+                    <table id ="table1" style= margin-left:auto;margin-right:auto; padding: 15px>
                         <tr>
                             <td colspan="3" >
                                 <asp:Label ID="Label1" runat="server" Text="ID"></asp:Label>
                             </td>
                             <td >
-                                 <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                                 <asp:TextBox ID="TextBox1" runat="server" Height="47px" Width="229px"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -263,7 +370,7 @@
                             </td>
 
                             <td >
-                                 <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                                 <asp:TextBox ID="TextBox2" runat="server" Height="47px" Width="229px"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -271,7 +378,7 @@
                                  <asp:Label ID="Label3" runat="server" Text="Gender"></asp:Label>
                             </td>
                             <td>
-                                 <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+                                 <asp:TextBox ID="TextBox3" runat="server" Height="47px" Width="229px"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -279,7 +386,7 @@
                                 <asp:Label ID="Label4" runat="server" Text="Age"></asp:Label>
                             </td>
                             <td >
-                                  <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+                                  <asp:TextBox ID="TextBox4" runat="server" Height="47px" Width="229px"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -287,12 +394,12 @@
                                 <asp:Label ID="Label5" runat="server" Text="Occupation"></asp:Label>
                             </td>
                             <td>
-                                <asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="TextBox5" runat="server" Height="47px" Width="229px"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td id="btn1">
-                                <asp:Button ID="Button1" runat="server" Text="Save" OnClick="Button1_Click" />
+                                <asp:Button ID="Button1" runat="server" Text="Save" OnClick="Button1_Click" Height="52px" Width="318px" />
                             </td>
                         </tr>
                     </table>
@@ -303,7 +410,21 @@
             </div>
         </section>
 
-        
+         <p>Training progress: <span id="trainingProgressValue">0</span>%</p>
+    <div class="progress-wrapper">
+        <div class="progress" id="trainingProgressBar"></div>
+    </div>
+    
+    <p>Test results: <span id="testResultsValue">0</span>% accuracy</p>
+    <div class="progress-wrapper">
+        <div class="progress" id="testResultsBar"></div>
+    </div>
+    
+    <p>Test your own:</p>
+    <textarea id="testBox" placeholder="eg: The director is a master at manupulating your emotions, making you laugh and cry."></textarea>
+    <button id="testButton">Guess Sentiment</button>
+    <p id="testResult" style="display:none;">Guess: <span id="testResultLabel"></span> (<span id="testResultProbability"></span>% probability)</p>
+
         <section id="features">
             <div class="section-features">
                <!-- <div class="container">
@@ -324,7 +445,7 @@
 
 
 
-                             <p>Training progress: <span id="trainingProgressValue">0</span>%</p>
+                            <%-- <p>Training progress: <span id="trainingProgressValue">0</span>%</p>
     <div class="progress-wrapper">
         <div class="progress" id="trainingProgressBar"></div>
     </div>
@@ -337,7 +458,7 @@
     <p>Test your own:</p>
     <textarea id="testBox" placeholder="eg: The director is a master at manupulating your emotions, making you laugh and cry."></textarea>
     <button id="testButton">Guess Sentiment</button>
-    <p id="testResult" style="display:block;">Guess: <span id="testResultLabel"></span> (<span id="testResultProbability"></span>% probability)</p>
+    <p id="testResult" style="display:block;">Guess: <span id="testResultLabel"></span> (<span id="testResultProbability"></span>% probability)</p>--%>
 
 
 
@@ -405,10 +526,10 @@
                             <%--<input type="hidden" id="Hidden1" value="" name="hdnYesNoAnswer" runat="server" />--%>
                             
                          </div>
-                        <script>
-                            function myFunction() {
-                                document.getElementById("panel").style.display = "block";
-                            }
+                         <script type="text/javascript"> 
+                            //function myFunction() {
+                            //    document.getElementById("panel").style.display = "block";
+                            //}
                             //function myFunction1() {
                             //    document.getElementById("panel-indoor").style.display = "block";
                             //}
@@ -465,123 +586,11 @@
                             //        $('#panel-indoor').hide();
                             //    }
                             //}
+                             /*
+                             The following is not free software. You may use it for educational purposes, but you may not redistribute or use it commercially.
+                             (C) All Rights Reserved, Burak Kanber 2013
+                             */
 
-
-
-                            // Define a couple of global variables so we can easily inspect data points we guessed incorrectly on.
-                            var incorrectNegs = [];
-                            var incorrectPos = [];
-
-                            // A list of negation terms that we'll use to flag nearby tokens
-                            var negations = new RegExp("^(never|no|nothing|nowhere|noone|none|not|havent|hasnt|hadnt|cant|couldnt|shouldnt|wont|wouldnt|dont|doesnt|didnt|isnt|arent|aint)$");
-
-                            // Use 85% of our data set for training, the remaining 15% will be used for testing.
-                            var length = negatives.length;
-                            var split = Math.floor(0.85 * length);
-
-                            // Don't spit out console.log stuff during training and guessing. 
-                            Bayes.debug = false;
-
-                            // Close-proximity negation-marked unigram ("eMSU")
-                            Bayes.tokenizer = function (text) {
-                                // Standard unigram tokenizer; lowercase, strip special characters, split by whitespace
-                                text = Bayes.unigramTokenizer(text);
-                                // Step through our array of tokens
-                                for (var i = 0, len = text.length; i < len; i++) {
-                                    // If we find a negation word, add an exclamation point to the word preceding and following it.
-                                    if (text[i].match(negations)) {
-                                        if (typeof text[i + 1] !== 'undefined') text[i + 1] = "!" + text[i + 1];
-                                        if (typeof text[i - 1] !== 'undefined') text[i - 1] = "!" + text[i - 1];
-                                    }
-                                }
-                                // Porter Stemmer; this reduces entropy a bit
-                                text = text.map(function (t) { return stemmer(t); });
-                                return text;
-                            };
-
-                            // Set the storage engine to in-memory; this example has too much data for localStorage.
-                            Bayes.storage = Storage;
-
-                            // Runs a single training and testing experiment.
-                            function go() {
-
-                                // Start from scratch.
-                                var correct = 0;
-                                var incorrect = 0;
-                                var skipped = 0;
-                                var trainingBar = document.getElementById("trainingProgressBar");
-                                var trainingVal = document.getElementById("trainingProgressValue");
-                                var trainingPct = 0;
-                                var resultsBar = document.getElementById("testResultsBar");
-                                var resultsVal = document.getElementById("testResultsValue");
-                                var resultsPct = 0.0;
-
-                                Bayes.storage._data = {};
-
-                                // Shuffle our arrays.
-                                negatives.sort(function () { return Math.random() - 0.5; });
-                                positives.sort(function () { return Math.random() - 0.5; });
-
-                                // First we train the data until we hit our split/pivot point.
-                              
-
-                                for (var i = 0; i < split; i++) {
-                                    Bayes.train(negatives[i], 'negative');
-                                    Bayes.train(positives[i], 'positive');
-                                    if (i % 500 === 0) {
-                                        // Next three lines are largely useless.
-                                        trainingPct = Math.round(i * 100 / split);
-                                        trainingVal.innerHTML = trainingPct;
-                                        trainingBar.style.width = trainingPct + '%';
-                                        // If you want live updates, look at the console.
-                                        console.log("Training progress: " + trainingPct + "%");
-                                    }
-                                }
-
-                                // Clean up the progress bar for the final state.
-                                trainingPct = 100;
-                                trainingVal.innerHTML = trainingPct;
-                                trainingBar.style.width = trainingPct + '%';
-
-                                // Now we guess. Look at the remainder of the data set and test each of those.
-                                for (var i = split; i < length; i++) {
-                                    var negResult = Bayes.extractWinner(Bayes.guess(negatives[i]));
-                                    var posResult = Bayes.extractWinner(Bayes.guess(positives[i]));
-
-                                    // Probability less than 75% so Skip it. 
-                                    if (negResult.score < 0.75) skipped++;
-                                    else if (negResult.label === 'negative') correct++;
-                                    else {
-                                        incorrect++;
-                                        incorrectNegs.push(negatives[i]);
-                                    }
-
-                                    // Repeat for the corresponding positive data point.
-                                    if (posResult.score < 0.75) skipped++;
-                                    else if (posResult.label === 'positive') correct++;
-                                    else {
-                                        incorrect++;
-                                        incorrectPos.push(positives[i]);
-                                    }
-                                }
-
-                                // Show the accuracy for this training/testing run.
-                                resultsPct = Math.round(10000 * correct / (correct + incorrect)) / 100;
-                                resultsBar.style.width = Math.round(resultsPct) + '%';
-                                resultsVal.innerHTML = resultsPct;
-                                return resultsPct;
-                            }
-
-                            document.getElementById("testButton").addEventListener('click', function () {
-                                var text = document.getElementById("testBox").value;
-                                var result = Bayes.extractWinner(Bayes.guess(text));
-                                document.getElementById("testBox").value = '';
-                                document.getElementById("testResultLabel").innerHTML = result.label;
-                                document.getElementById("testResultProbability").innerHTML = Math.round(100 * result.score);
-                                document.getElementById("testResult").style.display = 'block';
-                            });
-
-                            setTimeout(go, 500);
 
 
 
@@ -592,7 +601,7 @@
                      </div>
                  </div>
              </div>
-            </div><!-- SECTION-FEATURES -->
+            <!-- SECTION-FEATURES -->
         </section> <!-- SECTION -->
         
         <%-- <section class="why-us" id="timeline">
@@ -705,13 +714,13 @@
          </section>
 
          <section id="to-do">
-                            <div id="myDIV" class="header">
-  <h2>My To Do List</h2>
+                      <div id="myDIV" class="header">
+  <h2 style="margin:5px">My To Do List</h2>
   <input type="text" id="myInput" placeholder="Title...">
   <span onclick="newElement()" class="addBtn">Add</span>
 </div>
 
-<ul id="myUL">
+<ul class="myUL" id="todo">
   <li>Hit the gym</li>
   <li class="checked">Pay bills</li>
   <li>Meet George</li>
@@ -719,101 +728,44 @@
   <li>Read a book</li>
   <li>Organize office</li>
 </ul>
-             <script>
-                 // Create a "close" button and append it to each list item
-                 var myNodelist = document.getElementsByTagName("LI");
-                 var i;
-                 for (i = 0; i < myNodelist.length; i++) {
-                     var span = document.createElement("SPAN");
-                     var txt = document.createTextNode("\u00D7");
-                     span.className = "close";
-                     span.appendChild(txt);
-                     myNodelist[i].appendChild(span);
-                 }
 
-                 // Click on a close button to hide the current list item
-                 var close = document.getElementsByClassName("close");
-                 var i;
-                 for (i = 0; i < close.length; i++) {
-                     close[i].onclick = function () {
-                         var div = this.parentElement;
-                         div.style.display = "none";
-                     }
-                 }
+<script>
 
-                 // Add a "checked" symbol when clicking on a list item
-                 var list = document.querySelector('ul');
-                 list.addEventListener('click', function (ev) {
-                     if (ev.target.tagName === 'LI') {
-                         ev.target.classList.toggle('checked');
-                     }
-                 }, false);
 
-                 // Create a new list item when clicking on the "Add" button
-                 function newElement() {
-                     var li = document.createElement("li");
-                     var inputValue = document.getElementById("myInput").value;
-                     var t = document.createTextNode(inputValue);
-                     li.appendChild(t);
-                     if (inputValue === '') {
-                         alert("You must write something!");
-                     } else {
-                         document.getElementById("myUL").appendChild(li);
-                     }
-                     document.getElementById("myInput").value = "";
+    // Add a "checked" symbol when clicking on a list item
+    var list = document.querySelector('ul');
+    list.addEventListener('click', function (ev) {
+        if (ev.target.tagName === 'LI') {
+            ev.target.classList.toggle('checked');
+        }
+    }, false);
 
-                     var span = document.createElement("SPAN");
-                     var txt = document.createTextNode("\u00D7");
-                     span.className = "close";
-                     span.appendChild(txt);
-                     li.appendChild(span);
+    // Create a new list item when clicking on the "Add" button
+    function newElement() {
+        var li = document.createElement("li");
+        var inputValue = document.getElementById("myInput").value;
+        var t = document.createTextNode(inputValue);
+        li.appendChild(t);
+        if (inputValue === '') {
+            alert("You must write something!");
+        } else {
+            document.getElementById("todo").appendChild(li);
+        }
+        document.getElementById("myInput").value = "";
 
-                     for (i = 0; i < close.length; i++) {
-                         close[i].onclick = function () {
-                             var div = this.parentElement;
-                             div.style.display = "none";
-                         }
-                     }
-                 }
-</script>
-             <%--<div class="section-numbers">
-                 <div class="container">
-                     <h2>The <span class="bold-green">numbers</span> don't lie</h2>
-                     <p class="lead under-heading">Check out what our numbers tell about us</p>
-                     <div class="col-sm-3">
-                         <div class="num">
-                             <div class="num-content">
-                                 <span class="counter">13,863</span>
-                                 <p>Helped Poeple</p>
-                             </div>
-                         </div>
-                     </div>
-                      <div class="col-sm-3">
-                         <div class="num">
-                             <div class="num-content">
-                                 <span class="counter">6,263</span>
-                                 <p>Clients served</p>
-                             </div>
-                         </div>
-                     </div>
-                      <div class="col-sm-3">
-                         <div class="num">
-                             <div class="num-content">
-                                 <span class="counter">2,866</span>
-                                 <p>Whatever</p>
-                             </div>
-                         </div>
-                     </div>
-                      <div class="col-sm-3">
-                         <div class="num">
-                             <div class="num-content">
-                                 <span class="counter">1,562</span>
-                                 <p>OKay</p>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-             </div>  --%>
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+
+
+        for (i = 0; i < close.length; i++) {
+            close[i].onclick = function () {
+                var div = this.parentElement;
+                div.style.display = "none";
+            }
+        }
+    }
+</script>        
+             
          </section>
          
          
