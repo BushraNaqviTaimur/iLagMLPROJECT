@@ -155,6 +155,46 @@
 #panel-Relieved2{
   display: none;
 }
+.disable{
+    width:100%;
+    height:100%;
+    position:absolute;
+    left:0;
+    top:0;
+    display:none;
+    z-index:99;}
+
+
+
+/*hbuj*/
+ 
+.progress-wrapper {
+    border: 1px solid #CCC;
+    height: 15px;
+    width: 100%;
+}
+.progress {
+    background: #DDD;
+    height: 100%;
+    width: 0%;
+}
+
+ #testbutton {
+    border: 1px solid #CCC;
+}
+
+
+#testbutton {
+    background: white;
+    padding: 5px;
+    cursor: pointer;
+}
+
+
+
+
+
+
     </style>
      </head>
         <body>
@@ -279,10 +319,30 @@
                          <h2 class="heading js-wp-1"> Predict <span class="bold-green">  Your </span> Mood.</h2>
                           <p class="lead under-heading js-wp-1"> Predict your mood today to help yourself get hold of your activities before you do them.</p>
                         <!-- <p><a class="btn btn-lg btn-block btn-success parallax-btn" id="buttonpredict">Predict</a></p> -->
-                             <p class="flip" onclick="myFunction()"> PREDICT </p> <!--1 --> 
-                         <div id="panel">
+                             <%--<p class="flip" onclick="myFunction()"> PREDICT </p> 
+                         <div id="panel">--%>
 
-                              <p> What were your activities today? </p>
+
+
+                             <p>Training progress: <span id="trainingProgressValue">0</span>%</p>
+    <div class="progress-wrapper">
+        <div class="progress" id="trainingProgressBar"></div>
+    </div>
+    
+    <p>Test results: <span id="testResultsValue">0</span>% accuracy</p>
+    <div class="progress-wrapper">
+        <div class="progress" id="testResultsBar"></div>
+    </div>
+    
+    <p>Test your own:</p>
+    <textarea id="testBox" placeholder="eg: The director is a master at manupulating your emotions, making you laugh and cry."></textarea>
+    <button id="testButton">Guess Sentiment</button>
+    <p id="testResult" style="display:block;">Guess: <span id="testResultLabel"></span> (<span id="testResultProbability"></span>% probability)</p>
+
+
+
+
+                              <%--<p> What were your activities today? </p>
 
                               <p class="flip" onclick="myFunction1()"> Indoor </p> <!--2 --> 
                              <div id="panel-indoor">  
@@ -306,28 +366,19 @@
                              <div id="panel-Relieved">
                                  <p > Since you had Indoor activities and Felt Relieved on what you were doing,
                                                             we predict you will be in Fresh mood tomorrow. </p>
-                              </div>
+                              </div>--%>
 
 
 
-
-
-
-
-
-
+<%--<%--<%--
                                  </div>
+                              <%--<div class="disable"></div>--%>
 
 
 
-
-
-
-                             <p class="flip" onclick="myFunction2()"> Outdoor </p> <!--2 --> 
+                             <%--<p class="flip" onclick="myFunction2()"> Outdoor </p> <!--2 --> 
                              <div id="panel-outdoor">
                                
-
-
                                  <p> Whar are you feeling right now?</p> 
                                  
                                  <p class="flip" onclick="myFunction6()"> Focused </p>
@@ -349,39 +400,192 @@
                               </div>
 
                               </div>
-                            
 
+                            <%--  <div class="disable"></div>--%>
+                            <%--<input type="hidden" id="Hidden1" value="" name="hdnYesNoAnswer" runat="server" />--%>
+                            
                          </div>
                         <script>
                             function myFunction() {
                                 document.getElementById("panel").style.display = "block";
                             }
-                            function myFunction1() {
-                                document.getElementById("panel-indoor").style.display = "block";
-                            }
-                            function myFunction2() {
-                                document.getElementById("panel-outdoor").style.display = "block";
-                            }
-                            function myFunction3() {
-                                document.getElementById("panel-focused").style.display = "block";
-                            }
-                            function myFunction4() {
-                                document.getElementById("panel-anxious").style.display = "block";
-                            }
-                            function myFunction5() {
-                                    document.getElementById("panel-Relieved").style.display = "block";
+                            //function myFunction1() {
+                            //    document.getElementById("panel-indoor").style.display = "block";
+                            //}
+                            //function myFunction2() {
+                            //    document.getElementById("panel-outdoor").style.display = "block";
+                            //}
+                            //function myFunction3() {
+                            //    document.getElementById("panel-focused").style.display = "block";
+                            //}
+                            //function myFunction4() {
+                            //    document.getElementById("panel-anxious").style.display = "block";
+                            //}
+                            //function myFunction5() {
+                            //        document.getElementById("panel-Relieved").style.display = "block";
+                            //    }
+                            //    function myFunction6() {
+                            //        document.getElementById("panel-focused2").style.display = "block";
+                            //    }
+                            //function myFunction7() {
+                            //    document.getElementById("panel-anxious2").style.display = "block";
+                            //}
+
+                            //        function myFunction8() {
+                            //            document.getElementById("panel-Relieved2").style.display = "block";
+                            //        }
+
+                            //$(document).ready(function () {
+                            //    $('#panel-indoor, #panel-outdoor').click(function () {
+                            //        $(this).parent().siblings('.flip').children('.disable').css('display', 'block');
+                            //    });
+                            //});
+
+                            //$(document).ready(function () {
+
+                            //    if ($('#panel-indoor').click(function () {
+                            //        $('#panel-indoor').html("Counted");
+                            //        $('#panel-indoor').hide();
+                            //        $('#hdnYesNoAnswer').val('1');
+                            //    }));
+                            //    if ($('#panel-outdoor').click(function () {
+                            //        $('#panel-outdoor').html("counted");
+                            //        $('#panel-outdoor').hide();
+                            //        $('#hdnYesNoAnswer').val('0');
+                            //    }));
+                            //});
+
+                            //$('div').click(function () {
+                            //    // jquery click handler for the div
+                            //    if ($(this).attr('id') == 'panel-indoor') {
+                            //        // if yes was clicked!
+                            //        $('#panel-outdoor').hide();
+                            //    } else {
+                            //        // no was clicked
+                            //        $('#panel-indoor').hide();
+                            //    }
+                            //}
+
+
+
+                            // Define a couple of global variables so we can easily inspect data points we guessed incorrectly on.
+                            var incorrectNegs = [];
+                            var incorrectPos = [];
+
+                            // A list of negation terms that we'll use to flag nearby tokens
+                            var negations = new RegExp("^(never|no|nothing|nowhere|noone|none|not|havent|hasnt|hadnt|cant|couldnt|shouldnt|wont|wouldnt|dont|doesnt|didnt|isnt|arent|aint)$");
+
+                            // Use 85% of our data set for training, the remaining 15% will be used for testing.
+                            var length = negatives.length;
+                            var split = Math.floor(0.85 * length);
+
+                            // Don't spit out console.log stuff during training and guessing. 
+                            Bayes.debug = false;
+
+                            // Close-proximity negation-marked unigram ("eMSU")
+                            Bayes.tokenizer = function (text) {
+                                // Standard unigram tokenizer; lowercase, strip special characters, split by whitespace
+                                text = Bayes.unigramTokenizer(text);
+                                // Step through our array of tokens
+                                for (var i = 0, len = text.length; i < len; i++) {
+                                    // If we find a negation word, add an exclamation point to the word preceding and following it.
+                                    if (text[i].match(negations)) {
+                                        if (typeof text[i + 1] !== 'undefined') text[i + 1] = "!" + text[i + 1];
+                                        if (typeof text[i - 1] !== 'undefined') text[i - 1] = "!" + text[i - 1];
+                                    }
                                 }
-                                function myFunction6() {
-                                    document.getElementById("panel-focused2").style.display = "block";
+                                // Porter Stemmer; this reduces entropy a bit
+                                text = text.map(function (t) { return stemmer(t); });
+                                return text;
+                            };
+
+                            // Set the storage engine to in-memory; this example has too much data for localStorage.
+                            Bayes.storage = Storage;
+
+                            // Runs a single training and testing experiment.
+                            function go() {
+
+                                // Start from scratch.
+                                var correct = 0;
+                                var incorrect = 0;
+                                var skipped = 0;
+                                var trainingBar = document.getElementById("trainingProgressBar");
+                                var trainingVal = document.getElementById("trainingProgressValue");
+                                var trainingPct = 0;
+                                var resultsBar = document.getElementById("testResultsBar");
+                                var resultsVal = document.getElementById("testResultsValue");
+                                var resultsPct = 0.0;
+
+                                Bayes.storage._data = {};
+
+                                // Shuffle our arrays.
+                                negatives.sort(function () { return Math.random() - 0.5; });
+                                positives.sort(function () { return Math.random() - 0.5; });
+
+                                // First we train the data until we hit our split/pivot point.
+                              
+
+                                for (var i = 0; i < split; i++) {
+                                    Bayes.train(negatives[i], 'negative');
+                                    Bayes.train(positives[i], 'positive');
+                                    if (i % 500 === 0) {
+                                        // Next three lines are largely useless.
+                                        trainingPct = Math.round(i * 100 / split);
+                                        trainingVal.innerHTML = trainingPct;
+                                        trainingBar.style.width = trainingPct + '%';
+                                        // If you want live updates, look at the console.
+                                        console.log("Training progress: " + trainingPct + "%");
+                                    }
                                 }
-                            function myFunction7() {
-                                document.getElementById("panel-anxious2").style.display = "block";
+
+                                // Clean up the progress bar for the final state.
+                                trainingPct = 100;
+                                trainingVal.innerHTML = trainingPct;
+                                trainingBar.style.width = trainingPct + '%';
+
+                                // Now we guess. Look at the remainder of the data set and test each of those.
+                                for (var i = split; i < length; i++) {
+                                    var negResult = Bayes.extractWinner(Bayes.guess(negatives[i]));
+                                    var posResult = Bayes.extractWinner(Bayes.guess(positives[i]));
+
+                                    // Probability less than 75% so Skip it. 
+                                    if (negResult.score < 0.75) skipped++;
+                                    else if (negResult.label === 'negative') correct++;
+                                    else {
+                                        incorrect++;
+                                        incorrectNegs.push(negatives[i]);
+                                    }
+
+                                    // Repeat for the corresponding positive data point.
+                                    if (posResult.score < 0.75) skipped++;
+                                    else if (posResult.label === 'positive') correct++;
+                                    else {
+                                        incorrect++;
+                                        incorrectPos.push(positives[i]);
+                                    }
+                                }
+
+                                // Show the accuracy for this training/testing run.
+                                resultsPct = Math.round(10000 * correct / (correct + incorrect)) / 100;
+                                resultsBar.style.width = Math.round(resultsPct) + '%';
+                                resultsVal.innerHTML = resultsPct;
+                                return resultsPct;
                             }
 
-                                    function myFunction8() {
-                                        document.getElementById("panel-Relieved2").style.display = "block";
-                                    }
-                        
+                            document.getElementById("testButton").addEventListener('click', function () {
+                                var text = document.getElementById("testBox").value;
+                                var result = Bayes.extractWinner(Bayes.guess(text));
+                                document.getElementById("testBox").value = '';
+                                document.getElementById("testResultLabel").innerHTML = result.label;
+                                document.getElementById("testResultProbability").innerHTML = Math.round(100 * result.score);
+                                document.getElementById("testResult").style.display = 'block';
+                            });
+
+                            setTimeout(go, 500);
+
+
+
+
                         </script>
                        
 
@@ -391,7 +595,7 @@
             </div><!-- SECTION-FEATURES -->
         </section> <!-- SECTION -->
         
-         <section class="why-us" id="timeline">
+        <%-- <section class="why-us" id="timeline">
              <div class="section-timeline">
                  <div class="container">
                      <h2 class="heading">Our <span class="bold-green">timeline</span></h2>
@@ -447,7 +651,7 @@
                      </div>
                  </div>
              </div>
-         </section>   
+         </section>   --%>
          
          <section id="section-cards">
             <div class="container">
@@ -613,7 +817,7 @@
          </section>
          
          
-         <section id="testimonials">
+         <%--<section id="testimonials">
              <div class="section-testimonials">
                  <div class="container">
                     <h2>Clients' <span class="bold-green">tesimonials</span></h2>
@@ -665,7 +869,7 @@
                        
                  </div>
              </div>
-         </section>
+         </section>--%>
          
          
          <section id="contact">
@@ -723,16 +927,16 @@
              <div class="container">
                  <div class="row">
                      <div class="col-sm-4">
-                         <p>Copyright &copy; iMood</p>
+                         <p >Copyright &copy; iMood</p>
                      </div>
-                     <div class="col-sm-4">
+                     <%--<div class="col-sm-4">
                          <ul class="social-links">
                             <li><a href="#"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a></li>
                             <li><a href="#"><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></a></li>
                             <li><a href="#"><i class="fa fa-google-plus-square fa-2x" aria-hidden="true"></i></a></li>
                             <li><a href="#"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a></li>
                          </ul>
-                     </div>
+                     </div>--%>
                      <div class="col-sm-4 scroll-to-top-button">
                          <a href="#cover"><i class="fa fa-3x fa-chevron-circle-up"></i></a>
                      </div>
