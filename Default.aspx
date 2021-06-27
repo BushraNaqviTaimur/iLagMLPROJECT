@@ -71,7 +71,90 @@
 #panel-outdoor {
   display: none;
 }
-  
+   #panel-focused, .flip {
+  font-size: 16px;
+  padding: 10px;
+  text-align: center;
+  background-color:#006666;
+  color: white;
+  border: solid 1px #e6ffff;
+  margin: auto;
+}
+
+
+#panel-focused{
+  display: none;
+}
+ #panel-focused2, .flip {
+  font-size: 16px;
+  padding: 10px;
+  text-align: center;
+  background-color:#006666;
+  color: white;
+  border: solid 1px #e6ffff;
+  margin: auto;
+}
+
+
+#panel-focused2{
+  display: none;
+}
+ #panel-anxious, .flip {
+  font-size: 16px;
+  padding: 10px;
+  text-align: center;
+  background-color:#006666;
+  color: white;
+  border: solid 1px #e6ffff;
+  margin: auto;
+}
+
+
+#panel-anxious{
+  display: none;
+}
+ #panel-anxious2, .flip {
+  font-size: 16px;
+  padding: 10px;
+  text-align: center;
+  background-color:#006666;
+  color: white;
+  border: solid 1px #e6ffff;
+  margin: auto;
+}
+
+
+#panel-anxious2{
+  display: none;
+}
+ #panel-Relieved, .flip {
+  font-size: 16px;
+  padding: 10px;
+  text-align: center;
+  background-color:#006666;
+  color: white;
+  border: solid 1px #e6ffff;
+  margin: auto;
+}
+
+
+#panel-Relieved{
+  display: none;
+}
+#panel-Relieved2, .flip {
+  font-size: 16px;
+  padding: 10px;
+  text-align: center;
+  background-color:#006666;
+  color: white;
+  border: solid 1px #e6ffff;
+  margin: auto;
+}
+
+
+#panel-Relieved2{
+  display: none;
+}
     </style>
      </head>
         <body>
@@ -206,16 +289,23 @@
 
                                  <p> Whar are you feeling right now?</p> 
                                  
-                                 <p class="flip" onclick="myFunction1()"> Focused </p>
+                                 <p class="flip" onclick="myFunction3()"> Focused </p>
                              <div id="panel-focused">
+                                 <p > Since you had Indoor activities and Felt focused on what you were doing,
+                                                            we predict you will be in non-toxic mood tomorrow. </p>
+                            
                               </div>
 
-                                 <p class="flip" onclick="myFunction1()"> Anxious </p>
+                                 <p class="flip" onclick="myFunction4()"> Anxious </p>
                              <div id="panel-anxious">
+                                 <p > Since you had Indoor activities and Felt anxious on what you were doing,
+                                                            we predict you will be in Frustrated mood tomorrow. </p>
                               </div>
 
-                                 <p class="flip" onclick="myFunction1()"> Relieved </p>
+                                 <p class="flip" onclick="myFunction5()"> Relieved </p>
                              <div id="panel-Relieved">
+                                 <p > Since you had Indoor activities and Felt Relieved on what you were doing,
+                                                            we predict you will be in Fresh mood tomorrow. </p>
                               </div>
 
 
@@ -240,16 +330,22 @@
 
                                  <p> Whar are you feeling right now?</p> 
                                  
-                                 <p class="flip" onclick="myFunction1()"> Focused </p>
+                                 <p class="flip" onclick="myFunction6()"> Focused </p>
                              <div id="panel-focused2">
+                                 <p > Since you had Outdoor activities and Felt focused on what you were doing,
+                                                            we predict you will be in exhasting mood tomorrow. </p>
                               </div>
 
-                                 <p class="flip" onclick="myFunction1()"> Anxious </p>
+                                 <p class="flip" onclick="myFunction7()"> Anxious </p>
                              <div id="panel-anxious2">
+                                 <p > Since you had Outdoor activities and Felt anxious on what you were doing,
+                                                            we predict you will be in Frustrating mood tomorrow. </p>
                               </div>
 
-                                 <p class="flip" onclick="myFunction1()"> Relieved </p>
+                                 <p class="flip" onclick="myFunction8()"> Relieved </p>
                              <div id="panel-Relieved2">
+                                 <p > Since you had Outdoor activities and Felt Relieved on what you were doing,
+                                                            we predict you will be in Fresh mood tomorrow. </p>
                               </div>
 
                               </div>
@@ -266,6 +362,26 @@
                             function myFunction2() {
                                 document.getElementById("panel-outdoor").style.display = "block";
                             }
+                            function myFunction3() {
+                                document.getElementById("panel-focused").style.display = "block";
+                            }
+                            function myFunction4() {
+                                document.getElementById("panel-anxious").style.display = "block";
+                            }
+                            function myFunction5() {
+                                    document.getElementById("panel-Relieved").style.display = "block";
+                                }
+                                function myFunction6() {
+                                    document.getElementById("panel-focused2").style.display = "block";
+                                }
+                            function myFunction7() {
+                                document.getElementById("panel-anxious2").style.display = "block";
+                            }
+
+                                    function myFunction8() {
+                                        document.getElementById("panel-Relieved2").style.display = "block";
+                                    }
+                        
                         </script>
                        
 
