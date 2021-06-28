@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="iMoodFinalProject._Default" %>
+﻿   <%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="iMoodFinalProject._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -234,14 +234,14 @@ body {
 }
 
 /* When clicked on, add a background color and strike out text */
-.myUL li.checked {
+ ul li.checked {
   background: #888;
   color: #fff;
   text-decoration: line-through;
 }
 
 /* Add a "checked" mark when clicked on */
-.myUL li.checked::before {
+ul li.checked::before {
   content: '';
   position: absolute;
   border-color: #fff;
@@ -301,7 +301,25 @@ body {
   background-color: #bbb;
 }
 
+textarea {
+    width:300px;
+    height:100px;
+    resize:none;
+    display:block;
+    padding:10px;
+    margin:10px auto;
+    color: #555;
+}
+button {
+    display:block; 
+    margin:auto;
+}
+h2, p { 
+    text-align:center;
+    
+}
         </style>
+        <script src = "MLModule.js" type="text/javascript"></script>
      </head>
         <body>
         
@@ -331,18 +349,18 @@ body {
                 <li class="nav-item">
                     <a class="nav-link" href="#features">Our Mission</a>
                 </li>
-                <li class="nav-item">
+                <%--<li class="nav-item">
                     <a class="nav-link" href="#timeline">Timeline</a>
-                </li>
+                </li>--%>
                 <li class="nav-item">
                     <a class="nav-link" href="#section-cards">Psychiatrist</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#to-do">To-Do List</a>
                 </li>
-                <li class="nav-item">
+                <%--<li class="nav-item">
                     <a class="nav-link" href="#testimonials">Testimonials</a>
-                </li>
+                </li>--%>
                 <li class="nav-item">
                     <a class="nav-link" href="#contact">Contact us</a>
                 </li>             
@@ -410,257 +428,47 @@ body {
             </div>
         </section>
 
-         <p>Training progress: <span id="trainingProgressValue">0</span>%</p>
-    <div class="progress-wrapper">
-        <div class="progress" id="trainingProgressBar"></div>
-    </div>
-    
-    <p>Test results: <span id="testResultsValue">0</span>% accuracy</p>
-    <div class="progress-wrapper">
-        <div class="progress" id="testResultsBar"></div>
-    </div>
-    
-    <p>Test your own:</p>
-    <textarea id="testBox" placeholder="eg: The director is a master at manupulating your emotions, making you laugh and cry."></textarea>
-    <button id="testButton">Guess Sentiment</button>
-    <p id="testResult" style="display:none;">Guess: <span id="testResultLabel"></span> (<span id="testResultProbability"></span>% probability)</p>
+         
 
         <section id="features">
+
             <div class="section-features">
-               <!-- <div class="container">
-                    <h2 class="heading js-wp-1"> Predict <span class="bold-green">  Your </span> Mood.</h2>
-                    <p class="lead under-heading js-wp-1"> Predict your mood today to help yourself get hold of your activities before you do them.</p>
-                    <asp:Button ID="Button2" runat="server" Text="Predict"  />
-                
-                   
-                </div><!-- CONTAINER -->
+               
+              
                 <div class="container">
                  <div class="row">
                      <div class="col-sm-8 col-sm-offset-2">
                          <h2 class="heading js-wp-1"> Predict <span class="bold-green">  Your </span> Mood.</h2>
-                          <p class="lead under-heading js-wp-1"> Predict your mood today to help yourself get hold of your activities before you do them.</p>
-                        <!-- <p><a class="btn btn-lg btn-block btn-success parallax-btn" id="buttonpredict">Predict</a></p> -->
-                             <%--<p class="flip" onclick="myFunction()"> PREDICT </p> 
-                         <div id="panel">--%>
+                         <%-- <p class="lead under-heading js-wp-1"> Predict your mood today to help yourself get hold of your activities before you do them.</p>
+                         <p><a class="btn btn-lg btn-block btn-success parallax-btn" id="buttonpredict">Predict</a></p> --%>
+                             <p class="flip" onclick="myFunction()"> GUESS </p> 
+                         <div id="panel">
 
+                             <textarea id="test_phrase" placeholder="Enter English, Spanish, or French text here."></textarea>
+   <button id="test_button" onclick="go();">Guess Language</button>
+    <h2 id="test_result"></h2>
+    <p id="test_probability"></p>
 
-
-                            <%-- <p>Training progress: <span id="trainingProgressValue">0</span>%</p>
-    <div class="progress-wrapper">
-        <div class="progress" id="trainingProgressBar"></div>
-    </div>
-    
-    <p>Test results: <span id="testResultsValue">0</span>% accuracy</p>
-    <div class="progress-wrapper">
-        <div class="progress" id="testResultsBar"></div>
-    </div>
-    
-    <p>Test your own:</p>
-    <textarea id="testBox" placeholder="eg: The director is a master at manupulating your emotions, making you laugh and cry."></textarea>
-    <button id="testButton">Guess Sentiment</button>
-    <p id="testResult" style="display:block;">Guess: <span id="testResultLabel"></span> (<span id="testResultProbability"></span>% probability)</p>--%>
-
-
-
-
-                              <%--<p> What were your activities today? </p>
-
-                              <p class="flip" onclick="myFunction1()"> Indoor </p> <!--2 --> 
-                             <div id="panel-indoor">  
-
-                                 <p> Whar are you feeling right now?</p> 
-                                 
-                                 <p class="flip" onclick="myFunction3()"> Focused </p>
-                             <div id="panel-focused">
-                                 <p > Since you had Indoor activities and Felt focused on what you were doing,
-                                                            we predict you will be in non-toxic mood tomorrow. </p>
-                            
-                              </div>
-
-                                 <p class="flip" onclick="myFunction4()"> Anxious </p>
-                             <div id="panel-anxious">
-                                 <p > Since you had Indoor activities and Felt anxious on what you were doing,
-                                                            we predict you will be in Frustrated mood tomorrow. </p>
-                              </div>
-
-                                 <p class="flip" onclick="myFunction5()"> Relieved </p>
-                             <div id="panel-Relieved">
-                                 <p > Since you had Indoor activities and Felt Relieved on what you were doing,
-                                                            we predict you will be in Fresh mood tomorrow. </p>
-                              </div>--%>
-
-
-
-<%--<%--<%--
-                                 </div>
-                              <%--<div class="disable"></div>--%>
-
-
-
-                             <%--<p class="flip" onclick="myFunction2()"> Outdoor </p> <!--2 --> 
-                             <div id="panel-outdoor">
-                               
-                                 <p> Whar are you feeling right now?</p> 
-                                 
-                                 <p class="flip" onclick="myFunction6()"> Focused </p>
-                             <div id="panel-focused2">
-                                 <p > Since you had Outdoor activities and Felt focused on what you were doing,
-                                                            we predict you will be in exhasting mood tomorrow. </p>
-                              </div>
-
-                                 <p class="flip" onclick="myFunction7()"> Anxious </p>
-                             <div id="panel-anxious2">
-                                 <p > Since you had Outdoor activities and Felt anxious on what you were doing,
-                                                            we predict you will be in Frustrating mood tomorrow. </p>
-                              </div>
-
-                                 <p class="flip" onclick="myFunction8()"> Relieved </p>
-                             <div id="panel-Relieved2">
-                                 <p > Since you had Outdoor activities and Felt Relieved on what you were doing,
-                                                            we predict you will be in Fresh mood tomorrow. </p>
-                              </div>
-
-                              </div>
-
-                            <%--  <div class="disable"></div>--%>
-                            <%--<input type="hidden" id="Hidden1" value="" name="hdnYesNoAnswer" runat="server" />--%>
-                            
-                         </div>
+                             </div>
                          <script type="text/javascript"> 
-                            //function myFunction() {
-                            //    document.getElementById("panel").style.display = "block";
-                            //}
-                            //function myFunction1() {
-                            //    document.getElementById("panel-indoor").style.display = "block";
-                            //}
-                            //function myFunction2() {
-                            //    document.getElementById("panel-outdoor").style.display = "block";
-                            //}
-                            //function myFunction3() {
-                            //    document.getElementById("panel-focused").style.display = "block";
-                            //}
-                            //function myFunction4() {
-                            //    document.getElementById("panel-anxious").style.display = "block";
-                            //}
-                            //function myFunction5() {
-                            //        document.getElementById("panel-Relieved").style.display = "block";
-                            //    }
-                            //    function myFunction6() {
-                            //        document.getElementById("panel-focused2").style.display = "block";
-                            //    }
-                            //function myFunction7() {
-                            //    document.getElementById("panel-anxious2").style.display = "block";
-                            //}
 
-                            //        function myFunction8() {
-                            //            document.getElementById("panel-Relieved2").style.display = "block";
-                            //        }
-
-                            //$(document).ready(function () {
-                            //    $('#panel-indoor, #panel-outdoor').click(function () {
-                            //        $(this).parent().siblings('.flip').children('.disable').css('display', 'block');
-                            //    });
-                            //});
-
-                            //$(document).ready(function () {
-
-                            //    if ($('#panel-indoor').click(function () {
-                            //        $('#panel-indoor').html("Counted");
-                            //        $('#panel-indoor').hide();
-                            //        $('#hdnYesNoAnswer').val('1');
-                            //    }));
-                            //    if ($('#panel-outdoor').click(function () {
-                            //        $('#panel-outdoor').html("counted");
-                            //        $('#panel-outdoor').hide();
-                            //        $('#hdnYesNoAnswer').val('0');
-                            //    }));
-                            //});
-
-                            //$('div').click(function () {
-                            //    // jquery click handler for the div
-                            //    if ($(this).attr('id') == 'panel-indoor') {
-                            //        // if yes was clicked!
-                            //        $('#panel-outdoor').hide();
-                            //    } else {
-                            //        // no was clicked
-                            //        $('#panel-indoor').hide();
-                            //    }
-                            //}
-                             /*
-                             The following is not free software. You may use it for educational purposes, but you may not redistribute or use it commercially.
-                             (C) All Rights Reserved, Burak Kanber 2013
-                             */
-
-
-
-
-
+                            function myFunction() {
+                                document.getElementById("panel").style.display = "block";
+                            }
+                            
+                            
                         </script>
                        
-
+ 
                      </div>
                  </div>
              </div>
+            </div>
+            
             <!-- SECTION-FEATURES -->
         </section> <!-- SECTION -->
         
-        <%-- <section class="why-us" id="timeline">
-             <div class="section-timeline">
-                 <div class="container">
-                     <h2 class="heading">Our <span class="bold-green">timeline</span></h2>
-                     <p class="lead under-heading">Get grasp of our milestones</p>
-                     <ul class="timeline">
-                         <li>
-                             <div class="timeline-badge">2016</div>
-                             <div class="timeline-panel">
-                                 <div class="timeline-heading">
-                                     <h4 class="timeline-title">john <span class="green-underline">Snow</span></h4>
-                                     <p><small class="text-muted"><i class="fa fa-clock-o"></i>11 hours ago via Twitter</small></p>
-                                 </div>
-                                 <div class="timeline-body">
-                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ad, numquam, magnam nihil, necessitatibus minima fuga ab veniam harum animi doloribus sapiente recusandae illo eveniet in voluptatibus voluptate voluptatum deseruntLorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ad, numquam, magnam nihil, necessitatibus minima fuga ab veniam harum animi doloribus sapiente recusandae illo eveniet in voluptatibus voluptate voluptatum deserunt?</p>
-                                 </div>
-                             </div>
-                         </li>
-                          <li class="timeline-inverted">
-                             <div class="timeline-badge">2015</div>
-                             <div class="timeline-panel">
-                                 <div class="timeline-heading">
-                                     <h4 class="timeline-title">Rachel <span class="green-underline">Green</span></h4>
-                                     <p><small class="text-muted"><i class="fa fa-clock-o"></i>16 hours ago via Twitter</small></p>
-                                 </div>
-                                 <div class="timeline-body">
-                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ad, numquam, magnam nihil, necessitatibus minima fuga ab veniam harum animi doloribus sapiente recusandae illo eveniet in voluptatibus voluptate voluptatum deseruntLorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ad, numquam, magnam nihil, necessitatibus minima fuga ab veniam harum animi doloribus sapiente recusandae illo eveniet in voluptatibus voluptate voluptatum deserunt?</p>
-                                 </div>
-                             </div>
-                         </li>
-                          <li>
-                             <div class="timeline-badge">2014</div>
-                             <div class="timeline-panel">
-                                 <div class="timeline-heading">
-                                     <h4 class="timeline-title">Company <span class="green-underline">founded</span></h4>
-                                     <p><small class="text-muted"><i class="fa fa-clock-o"></i>20 hours ago via Twitter</small></p>
-                                 </div>
-                                 <div class="timeline-body">
-                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ad, numquam, magnam nihil, necessitatibus minima fuga ab veniam harum animi doloribus sapiente recusandae illo eveniet in voluptatibus voluptate voluptatum deseruntLorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ad, numquam, magnam nihil, necessitatibus minima fuga ab veniam harum animi doloribus sapiente recusandae illo eveniet in voluptatibus voluptate voluptatum deserunt?</p>
-                                 </div>
-                             </div>
-                         </li>
-                     </ul>
-                 </div>
-             </div>
-         </section>
-         
-         <section id="section-parallax" data-type="background" data-speed="4">
-             <div class="container">
-                 <div class="row">
-                     <div class="col-sm-8 col-sm-offset-2">
-                         <h2>Are you ready to be a part of <strong>the Project</strong>?</h2>
-                         <p><a href="#contact" class="btn btn-lg btn-block btn-success parallax-btn">Yes, please!</a></p>
-                     </div>
-                 </div>
-             </div>
-         </section>   --%>
+        
          
          <section id="section-cards">
             <div class="container">
@@ -714,11 +522,11 @@ body {
          </section>
 
          <section id="to-do">
-                      <div id="myDIV" class="header">
-  <h2 style="margin:5px">My To Do List</h2>
-  <input type="text" id="myInput" placeholder="Title...">
-  <span onclick="newElement()" class="addBtn">Add</span>
-</div>
+               <div id="myDIV" class="header">
+                 <h2 style="margin:5px">To Do List</h2>
+                <input type="text" id="myInput" placeholder="Title...">
+               <span onclick="newElement()" class="addBtn">Add</span>
+              </div>
 
 <ul class="myUL" id="todo">
   <li>Hit the gym</li>
@@ -727,6 +535,7 @@ body {
   <li>Buy eggs</li>
   <li>Read a book</li>
   <li>Organize office</li>
+
 </ul>
 
 <script>
@@ -769,59 +578,7 @@ body {
          </section>
          
          
-         <%--<section id="testimonials">
-             <div class="section-testimonials">
-                 <div class="container">
-                    <h2>Clients' <span class="bold-green">tesimonials</span></h2>
-                    <p class="lead under-heading">Read what others say about our services.</p>
-                     <div class="row">
-                         <div class="col-sm-4">
-                             <div class="row testimonial">
-                                 <div class="col-sm-4">
-                                     <img src="img/Joey.jpeg" class="joey-img">
-                                 </div>
-                                 <div class="col-sm-8">
-                                    <blockquote>
-                                        <i class="fa fa-quote-right"></i>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe aut assumenda velit quas impedit sequi illum iste eos voluptatibus provident, recusandae quia! In dolorum debitis accusamus suscipit voluptatem, sapiente id.
-                                        <hr class="testimonials-hr">
-                                        <cite>&#8212; Joey, How you doin'?</cite>
-                                    </blockquote> 
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="col-sm-4">
-                             <div class="row testimonial">
-                                 <div class="col-sm-4">
-                                     <img src="img/rachel.jpeg" class="rachel-img">
-                                 </div>
-                                 <div class="col-sm-8">
-                                    <blockquote>
-                                        <i class="fa fa-quote-right"></i>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe aut assumenda velit quas impedit sequi illum iste eos voluptatibus provident, recusandae quia! In dolorum debitis accusamus suscipit voluptatem, sapiente id.
-                                        <hr class="testimonials-hr">
-                                        <cite>&#8212; Rachel, Noooooo</cite>
-                                    </blockquote> 
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="col-sm-4">
-                             <div class="row testimonial">
-                                 <div class="col-sm-4">
-                                     <img src="img/Chan.jpeg class="Chan-img">
-                                 </div>
-                                 <div class="col-sm-8">
-                                    <blockquote>
-                                        <i class="fa fa-quote-right"></i>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe aut assumenda velit quas impedit sequi illum iste eos voluptatibus provident, recusandae quia! In dolorum debitis accusamus suscipit voluptatem, sapiente id.
-                                        <hr class="testimonials-hr">
-                                        <cite>&#8212; Chandler, Could I be more .......</cite>
-                                    </blockquote> 
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                       
-                 </div>
-             </div>
-         </section>--%>
+        
          
          
          <section id="contact">
