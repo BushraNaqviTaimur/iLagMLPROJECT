@@ -15,7 +15,7 @@
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
 
-        <title>iMood</title>
+        <title>iLang</title>
     <style>
         #table1{
             border-collapse: collapse;
@@ -43,153 +43,7 @@
   display: none;
 }
 
-        #panel-indoor, .flip {
-  font-size: 16px;
-  padding: 10px;
-  text-align: center;
-  background-color:#006666;
-  color: white;
-  border: solid 1px #e6ffff;
-  margin: auto;
-}
-
-
-#panel-indoor {
-  display: none;
-}
-     #panel-outdoor, .flip {
-  font-size: 16px;
-  padding: 10px;
-  text-align: center;
-  background-color:#006666;
-  color: white;
-  border: solid 1px #e6ffff;
-  margin: auto;
-}
-
-
-#panel-outdoor {
-  display: none;
-}
-   #panel-focused, .flip {
-  font-size: 16px;
-  padding: 10px;
-  text-align: center;
-  background-color:#006666;
-  color: white;
-  border: solid 1px #e6ffff;
-  margin: auto;
-}
-
-
-#panel-focused{
-  display: none;
-}
- #panel-focused2, .flip {
-  font-size: 16px;
-  padding: 10px;
-  text-align: center;
-  background-color:#006666;
-  color: white;
-  border: solid 1px #e6ffff;
-  margin: auto;
-}
-
-
-#panel-focused2{
-  display: none;
-}
- #panel-anxious, .flip {
-  font-size: 16px;
-  padding: 10px;
-  text-align: center;
-  background-color:#006666;
-  color: white;
-  border: solid 1px #e6ffff;
-  margin: auto;
-}
-
-
-#panel-anxious{
-  display: none;
-}
- #panel-anxious2, .flip {
-  font-size: 16px;
-  padding: 10px;
-  text-align: center;
-  background-color:#006666;
-  color: white;
-  border: solid 1px #e6ffff;
-  margin: auto;
-}
-
-
-#panel-anxious2{
-  display: none;
-}
- #panel-Relieved, .flip {
-  font-size: 16px;
-  padding: 10px;
-  text-align: center;
-  background-color:#006666;
-  color: white;
-  border: solid 1px #e6ffff;
-  margin: auto;
-}
-
-
-#panel-Relieved{
-  display: none;
-}
-#panel-Relieved2, .flip {
-  font-size: 16px;
-  padding: 10px;
-  text-align: center;
-  background-color:#006666;
-  color: white;
-  border: solid 1px #e6ffff;
-  margin: auto;
-}
-
-
-#panel-Relieved2{
-  display: none;
-}
-.disable{
-    width:100%;
-    height:100%;
-    position:absolute;
-    left:0;
-    top:0;
-    display:none;
-    z-index:99;}
-
-
-
-/*hbuj*/
- 
-.progress-wrapper {
-    border: 1px solid #CCC;
-    height: 15px;
-    width: 100%;
-}
-.progress {
-    background: #DDD;
-    height: 100%;
-    width: 0%;
-}
-
- #testbutton {
-    border: 1px solid #CCC;
-}
-
-
-#testbutton {
-    background: white;
-    padding: 5px;
-    cursor: pointer;
-}
-
+       
 body {
   margin: 0;
   min-width: 250px;
@@ -313,11 +167,29 @@ textarea {
 button {
     display:block; 
     margin:auto;
+    color: #555;
 }
 h2, p { 
     text-align:center;
     
 }
+        .auto-style1 {
+            position: relative;
+            min-height: 1px;
+            float: left;
+            width: 83.333333%;
+            left: -7px;
+            top: 3px;
+            padding-left: .9375rem;
+            padding-right: .9375rem;
+        }
+        .card-link{
+            text-align:center;
+        }
+        .moto{
+             color: #555;
+        }
+        
         </style>
         <script src = "MLModule.js" type="text/javascript"></script>
      </head>
@@ -328,11 +200,11 @@ h2, p {
                  <div class="row">
                      <div class="col-sm-3">
                         <p class="lead wall-sticker">
-                            <span class="bold-logo">i</span>Mood
+                            <span class="bold-logo">i</span>Lang
                         </p> 
                      </div>
                      <div class="col-sm-9"> 
-                         <h1 class="moto">The only journey is the <span class="bold-ban">journey within</span>! <br><br> Want to become a <span class="green-underline">part</span> of it?</h1>
+                         <h1 class="moto"> Exploring the boundaries of Literature.<span class="bold-ban"> </span>! <br><br> Want to become a <span class="green-underline">part</span> of it?</h1>
                          <a href="#section-cards"><i class="fa fa-arrow-down"></i></a>  
                      </div> 
                  </div> 
@@ -341,7 +213,7 @@ h2, p {
         
         
         <nav class="navbar navbar-dark bg-inverse navbar-full" id="main-nav">
-            <a class="navbar-brand" href="#cover"><span class="bold-logo">i</span>MOOD</a>
+            <a class="navbar-brand" href="#cover"><span class="bold-logo">i</span>LANG</a>
             <ul class="nav navbar-nav  pull-xs-right">
                 <li class="nav-item">
                     <a class="nav-link" href="#home">Home</a>
@@ -368,10 +240,51 @@ h2, p {
           
         </nav>
 
+
+            <section id="features">
+
+            <div class="section-features">
+               
+              
+                <div class="container">
+                 <div class="row">
+                     <div class="col-sm-8 col-sm-offset-2">
+                         <h2 class="heading js-wp-1"> Predict <span class="bold-green"> the  </span> Language </h2>
+                         <%-- <p class="lead under-heading js-wp-1"> Predict your mood today to help yourself get hold of your activities before you do them.</p>
+                         <p><a class="btn btn-lg btn-block btn-success parallax-btn" id="buttonpredict">Predict</a></p> --%>
+                             <p class="flip" onclick="myFunction()"> PREDICT </p> 
+                         <div id="panel">
+
+                             <textarea id="test_phrase" placeholder="Enter English, Spanish, or French text here."></textarea>
+   <button id="test_button" onclick="go();">Guess Language</button>
+    <h2 id="test_result"></h2>
+    <p id="test_probability"></p>
+
+                             </div>
+                         <script type="text/javascript"> 
+
+                             function myFunction() {
+                                 document.getElementById("panel").style.display = "block";
+                             }
+
+
+                        </script>
+                       
+ 
+                     </div>
+                 </div>
+             </div>
+            </div>
+            
+            <!-- SECTION-FEATURES -->
+        </section> <!-- SECTION -->
+        
+
+
         <section class="why-us" id="home">
             <div class="section-timeline">
                 <div class="container">
-                    <h2 class="heading js-wp-1"><span class="bold-green">Personal</span>  Info </h2>
+                    <h2 class="heading js-wp-1"><span class="bold-green">Leave Us</span>  Feedback </h2>
                    
                     <table id ="table1" style= margin-left:auto;margin-right:auto; padding: 15px>
                         <tr>
@@ -401,7 +314,7 @@ h2, p {
                         </tr>
                         <tr>
                             <td colspan="3" >
-                                <asp:Label ID="Label4" runat="server" Text="Age"></asp:Label>
+                                <asp:Label ID="Label4" runat="server" Text="Email"></asp:Label>
                             </td>
                             <td >
                                   <asp:TextBox ID="TextBox4" runat="server" Height="47px" Width="229px"></asp:TextBox>
@@ -409,7 +322,7 @@ h2, p {
                         </tr>
                         <tr>
                             <td colspan="3">
-                                <asp:Label ID="Label5" runat="server" Text="Occupation"></asp:Label>
+                                <asp:Label ID="Label5" runat="server" Text="Feedback"></asp:Label>
                             </td>
                             <td>
                                 <asp:TextBox ID="TextBox5" runat="server" Height="47px" Width="229px"></asp:TextBox>
@@ -430,83 +343,46 @@ h2, p {
 
          
 
-        <section id="features">
-
-            <div class="section-features">
-               
-              
-                <div class="container">
-                 <div class="row">
-                     <div class="col-sm-8 col-sm-offset-2">
-                         <h2 class="heading js-wp-1"> Predict <span class="bold-green">  Your </span> Mood.</h2>
-                         <%-- <p class="lead under-heading js-wp-1"> Predict your mood today to help yourself get hold of your activities before you do them.</p>
-                         <p><a class="btn btn-lg btn-block btn-success parallax-btn" id="buttonpredict">Predict</a></p> --%>
-                             <p class="flip" onclick="myFunction()"> GUESS </p> 
-                         <div id="panel">
-
-                             <textarea id="test_phrase" placeholder="Enter English, Spanish, or French text here."></textarea>
-   <button id="test_button" onclick="go();">Guess Language</button>
-    <h2 id="test_result"></h2>
-    <p id="test_probability"></p>
-
-                             </div>
-                         <script type="text/javascript"> 
-
-                            function myFunction() {
-                                document.getElementById("panel").style.display = "block";
-                            }
-                            
-                            
-                        </script>
-                       
- 
-                     </div>
-                 </div>
-             </div>
-            </div>
-            
-            <!-- SECTION-FEATURES -->
-        </section> <!-- SECTION -->
-        
+     
         
          
          <section id="section-cards">
             <div class="container">
-                <h2>Our <span class="bold-green">Psychiatrist</span></h2>
+                <h2>Our <span class="bold-green">Language Tutors</span></h2>
                 <p class="lead under-heading">See what we're capable of doing</p>
             <div class="row">
                 <div class="col-sm-4">
                     <div class="card">
                         <div class="card-block">
-                            <h4 class="card-title">Dr &amp; John</h4>
-                            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+                            <h4 class="card-title"> Ms. &amp; Sylvia</h4>
+                            <h6 class="card-subtitle text-muted">Online French Teacher</h6>
                         </div>
-                        <img src="img/" alt="Card image">
+                        <img src="img/img1.JPG" alt="Card image">
                         <div class="card-block">
-                            <p class="card-text">Some quick example of text to build on the card text.</p>
-                            <a href="#" class="card-link">Card Link</a>
-                            <a href="#" class="card-link">Another Link</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="card">
-                        <div class="card-block">
-                            <h4 class="card-title">Dr &amp; John</h4>
-                            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-                        </div>
-                        <img src="img/" alt="Card image">
-                        <div class="card-block">
-                            <p class="card-text">Some quick example of text to build on the card text.</p>
-                            <a href="#" class="card-link">Card Link</a>
-                            <a href="#" class="card-link">Another Link</a>
+                            <p class="card-text">Bonjour, my name is Sylvie, I am an experienced native and <br /> certified French teacher. I love my job an I like teaching in a fun and relaxed way. I speak english and german and adapt myself to your requirements . I will encourage you to speak because my lessons are based on the communication.</p>
+                            <a href="https://preply.com/en/tutor/376901/" class="card-link">     Contact her for more information.</a>
+                            
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="card">
                         <div class="card-block">
-                            <h4 class="card-title">Dr &amp; John</h4>
+                            <h4 class="card-title"> Ms.&amp;Elena</h4>
+                            <h6 class="card-subtitle text-muted">Online Spanish Teacher</h6>
+                        </div>
+                        <img src="img/img2.JPG" alt="Card image">
+                        <div class="card-block">
+                            <p class="card-text">Hi! I am Elena, I am 25 years old, I am Mexican and I am a professional, I also have extensive knowledge in literature and I am a lover of books, <br /> culture and my native language which is Spanish.I can speak English  I really want to share the wonders of one of the most widely spoken languages in the world!</p>
+                            <a href="https://preply.com/en/tutor/763136/" class="card-link">     Contact her for more information.</a>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title"> &amp; John</h4>
                             <h6 class="card-subtitle text-muted">Support card subtitle</h6>
                         </div>
                         <img src="img/" alt="Card image">
@@ -608,7 +484,7 @@ h2, p {
                                  </div>
                                  <div class="form-group">
                                      <label for="human" class="col-sm-2 control-label">2 + 3 = ?</label> 
-                                     <div class="col-sm-10">
+                                     <div class="auto-style1">
                                          <input type="text" class="form-control" id="human" name="human" placeholder="Your Anaswer">
                                      </div>
                                  </div>

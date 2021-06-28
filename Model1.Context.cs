@@ -13,10 +13,10 @@ namespace iMoodFinalProject
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class iMoodEntities : DbContext
+    public partial class iLangEntities : DbContext
     {
-        public iMoodEntities()
-            : base("name=iMoodEntities")
+        public iLangEntities()
+            : base("name=iLangEntities")
         {
         }
     
@@ -26,6 +26,5 @@ namespace iMoodFinalProject
         }
     
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<MoodResult> MoodResults { get; set; }
     }
 }

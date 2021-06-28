@@ -17,10 +17,7 @@ namespace iMoodFinalProject
         public string ID { get; set; }
         public string Name { get; set; }
         public string Gender { get; set; }
-        public string Age { get; set; }
-        public string Occupation { get; set; }
-    
-        public virtual MoodResult MoodResult { get; set; }
-        public virtual MoodResult MoodResult1 { get; set; }
+        public string Email { get; set; }
+        public string Feedback { get; set; }
     }
 }

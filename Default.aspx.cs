@@ -11,7 +11,7 @@ namespace iMoodFinalProject
     public partial class _Default : Page
     {
         //DATA SOURSE FROM CONNECTION STRING IN WEB.CONFIG
-        SqlConnection con = new SqlConnection(@"Data Source=.\SQLEXPRESS;initial catalog=iMood;integrated security=True;");
+        SqlConnection con = new SqlConnection(@"Data Source=.\SQLEXPRESS;initial catalog=iLang;integrated security=True;");
         protected void Page_Load(object sender, EventArgs e)
         {
 
