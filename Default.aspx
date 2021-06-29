@@ -88,26 +88,6 @@ body {
   background: #ddd;
 }
 
-/* When clicked on, add a background color and strike out text */
- ul li.checked {
-  background: #888;
-  color: #fff;
-  text-decoration: line-through;
-}
-
-/* Add a "checked" mark when clicked on */
-ul li.checked::before {
-  content: '';
-  position: absolute;
-  border-color: #fff;
-  border-style: solid;
-  border-width: 0 2px 2px 0;
-  top: 10px;
-  left: 16px;
-  transform: rotate(45deg);
-  height: 15px;
-  width: 7px;
-}
 
 
 
@@ -191,10 +171,20 @@ h2, p {
         .moto{
              color: #555;
         }
-        #btn2{
+        #btntodoemail{
             display:inline; 
     margin:auto;
     color: #555;
+        }
+        #listing{
+            font-size: 16px;
+  padding: 10px;
+  text-align: center;
+  background-color:#006666;
+  color: white;
+  border: solid 1px #e6ffff;
+  margin: auto;
+
         }
         
         </style>
@@ -363,7 +353,6 @@ h2, p {
         </section>
             
 
-           <%-- for ID--%>
 
          <script>  
              function OnlyNumbers(evt) {
@@ -388,7 +377,7 @@ h2, p {
                 <div class="col-sm-4">
                     <div class="card">
                         <div class="card-block">
-                            <h4 class="card-title"> Ms. &amp; Sylvia</h4>
+                            <h4 class="card-title"> Ms.Sylvia</h4>
                             <h6 class="card-subtitle text-muted">Online French Teacher</h6>
                         </div>
                         <img src="img/img1.JPG" alt="Card image">
@@ -402,7 +391,7 @@ h2, p {
                 <div class="col-sm-4">
                     <div class="card">
                         <div class="card-block">
-                            <h4 class="card-title"> Ms.&amp;Elena</h4>
+                            <h4 class="card-title"> Ms.Elena</h4>
                             <h6 class="card-subtitle text-muted">Online Spanish Teacher</h6>
                         </div>
                         <img src="img/img2.JPG" alt="Card image">
@@ -416,7 +405,7 @@ h2, p {
                 <div class="col-sm-4">
                     <div class="card">
                         <div class="card-block">
-                            <h4 class="card-title">Mr.&amp; Ryan S.</h4>
+                            <h4 class="card-title">Mr.Ryan S.</h4>
                             <h6 class="card-subtitle text-muted">Online English Teacher</h6>
                         </div>
                         <img src="img/img3.JPG" alt="Card image">
@@ -439,14 +428,12 @@ h2, p {
               </div>
 
 <ul class="myUL" id="todo">
- 
-  
-
+    
 </ul>
-
-             <input id="todoemailadd" type="text"> 
-             <button id="btntodoemail" onclick= "sendemail()"> Send</button>
-
+             <div id="listing"> 
+             <input id="todoemailadd" type="text" > 
+             <button id="btntodoemail" onclick= "sendemail()"> Send Via Email</button>
+             </div>
              <script>
 
                  var emailbody="";
@@ -467,12 +454,12 @@ h2, p {
 
 
     // Add a "checked" symbol when clicking on a list item
-    var list = document.querySelector('ul');
-    list.addEventListener('click', function (ev) {
-        if (ev.target.tagName === 'LI') {
-            ev.target.classList.toggle('checked');
-        }
-    }, false);
+    //var list = document.querySelector('ul');
+    //list.addEventListener('click', function (ev) {
+    //    if (ev.target.tagName === 'LI') {
+    //        ev.target.classList.toggle('checked');
+    //    }
+    //}, false);
 
     // Create a new list item when clicking on the "Add" button
     function newElement() {
@@ -489,10 +476,7 @@ h2, p {
         }
         document.getElementById("myInput").value = "";
 
-        var span = document.createElement("SPAN");
-        var txt = document.createTextNode("\u00D7");
-
-
+   
         for (i = 0; i < close.length; i++) {
             close[i].onclick = function () {
                 var div = this.parentElement;
