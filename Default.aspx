@@ -191,6 +191,11 @@ h2, p {
         .moto{
              color: #555;
         }
+        #btn2{
+            display:inline; 
+    margin:auto;
+    color: #555;
+        }
         
         </style>
         <script src = "MLModule.js" type="text/javascript"></script>
@@ -257,7 +262,7 @@ h2, p {
                              <p class="flip" onclick="myFunction()"> PREDICT </p> 
                          <div id="panel">
 
-                             <textarea id="test_phrase" placeholder="Enter English, Spanish, or French text here."></textarea>
+                             <textarea id="test_phrase" placeholder="Enter English, Spanish, or French text here." ></textarea>
    <button id="test_button" onclick="go();">Guess Language</button>
     <h2 id="test_result"></h2>
     <p id="test_probability"></p>
@@ -269,7 +274,7 @@ h2, p {
                                  document.getElementById("panel").style.display = "block";
                              }
 
-
+                             
                         </script>
                        
  
@@ -434,10 +439,29 @@ h2, p {
               </div>
 
 <ul class="myUL" id="todo">
-  <li>Hit the gym</li>
+ 
   
 
 </ul>
+
+             <input id="todoemailadd" type="text"> 
+             <button id="btntodoemail" onclick= "sendemail()"> Send</button>
+
+             <script>
+
+                 var emailbody="";
+
+                 function sendemail() {
+                     event.preventDefault();
+                     var emailTo = document.getElementById("todoemailadd").value;
+
+                     window.open('mailto:' + emailTo + '?subject=iLang ToDo List&body=' + emailbody);
+                     
+                 }
+
+             </script>
+            
+
 
 <script>
 
@@ -460,6 +484,8 @@ h2, p {
             alert("You must write something!");
         } else {
             document.getElementById("todo").appendChild(li);
+            emailbody += inputValue + ', ';
+           
         }
         document.getElementById("myInput").value = "";
 
