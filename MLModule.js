@@ -4,6 +4,7 @@
         for (var i = 0, l = this.length; i < l; ++i) {
             if (u.hasOwnProperty(this[i])) {
                 continue;
+
             }
             a.push(this[i]);
             u[this[i]] = 1;
@@ -24,10 +25,16 @@
         console.log(text);
     };
 
+    //TRAINING
+    //removing punctuations, converting to lowercase, splitting sentence with space to get "tokens"
+    //unique() tells us if word shows up in the document
     var tokenize = function (text) {
-        text = text.toLowerCase().replace(/\W/g, ' ').replace(/\s+/g, ' ').trim().split(' ').unique();
+        text = text.toLowerCase().replace(/\W/g, ' ').replace(/\s+/g,
+            ' ').trim().split(' ').unique();
         return text;
     };
+    //we now loop through each token(word), and then call incrementstem() function.
+
 
     var getLabels = function () {
         var labels = localStorage.getItem('_Bayes::registeredLabels');
@@ -37,6 +44,9 @@
         });
     };
 
+    //TRAINING
+    //simply adds the labels to the database..here in localstorage
+    //it stores labels so that we can retrieve a list of labels later
     var registerLabel = function (label) {
         var labels = getLabels();
         if (labels.indexOf(label) === -1) {
@@ -45,7 +55,7 @@
         }
         return true;
     };
-
+    //no. of sentences we saw for given label
     var stemLabelCount = function (stem, label) {
         var count = parseInt(localStorage.getItem(stemKey(stem, label)));
         if (!count) count = 0;
@@ -89,15 +99,22 @@
         return count + 1;
     };
 
+    //TRAINING
+    //after tokenization.
+    //this function records no. of times word was seen for a given label.
     var incrementStem = function (stem, label) {
         increment(stemCountKey(stem));
         increment(stemKey(stem, label));
     };
 
+    //TRAINING
+    //finally calling this to record how many documents we saw for given label.
     var incrementDocCount = function (label) {
         return increment(docCountKey(label));
     };
 
+    //TRAINING
+    //training itself through piece of text and its given label
     Bayes.train = function (text, label) {
         registerLabel(label);
         var words = tokenize(text);
@@ -107,7 +124,13 @@
         incrementDocCount(label);
     };
 
+    //RESULT OF TRAINING = labels in localstorage(registerlabel)
+                          //no. of times word was seen for label during training(incrementstem)
+                          //total number of sentences for each label that we went through(incrementDocCount)
+
+
     Bayes.guess = function (text) {
+        //initializing variables
         var words = tokenize(text);
         var length = words.length;
         var labels = getLabels();
@@ -117,39 +140,49 @@
         var scores = {};
         var labelProbability = {};
 
+        // below two loops are for calculating certain probabilities.
+
+        //this info below can help us know that any thing can be english or cannot be english
         for (var j = 0; j < labels.length; j++) {
             var label = labels[j];
-            docCounts[label] = docCount(label);
-            docInverseCounts[label] = docInverseCount(label);
-            totalDocCount += parseInt(docCounts[label]);
+            docCounts[label] = docCount(label); //no. of docs we have seen for given label
+            docInverseCounts[label] = docInverseCount(label); //no. of docs not in the label
+            totalDocCount += parseInt(docCounts[label]); //total no. of docs we've seen
         }
 
-        for (var j = 0; j < labels.length; j++) {
+        //looking every variable, logsum variable store probability that document is in this label's catogory.
+
+        for (var j = 0; j < labels.length; j++) { //look at each label loop
             var label = labels[j];
             var logSum = 0;
             labelProbability[label] = docCounts[label] / totalDocCount;
 
+            //for each label, looking at each word in document.
             for (var i = 0; i < length; i++) {
                 var word = words[i];
-                var _stemTotalCount = stemTotalCount(word);
-                if (_stemTotalCount === 0) {
+                var _stemTotalCount = stemTotalCount(word); //holds no. of word is seen in "any" document
+
+                if (_stemTotalCount === 0) { //never seen word,skip it.
                     continue;
                 } else {
-                    var wordProbability = stemLabelCount(word, label) / docCounts[label];
-                    var wordInverseProbability = stemInverseLabelCount(word, label) / docInverseCounts[label];
+                    //word probability is probability that this word shows up in a [French|English|Spanish] document. 
+                    var wordProbability = stemLabelCount(word, label) / docCounts[label]; //stemlabelcount=//no. of sentences we saw for given label / sentences hvaing that word in themselves under that label
+                    var wordInverseProbability = stemInverseLabelCount(word, label) / docInverseCounts[label]; //probability that the word shows up in any other category than the one we're considering.
+
                     var wordicity = wordProbability / (wordProbability + wordInverseProbability);
 
-                    wordicity = ((1 * 0.5) + (_stemTotalCount * wordicity)) / (1 + _stemTotalCount);
-                    if (wordicity === 0)
+                  
+                    if (wordicity === 0) //because of log function below.
                         wordicity = 0.01;
                     else if (wordicity === 1)
                         wordicity = 0.99;
                 }
 
-                logSum += (Math.log(1 - wordicity) - Math.log(wordicity));
+                logSum += (Math.log(1 - wordicity) - Math.log(wordicity)); //avoiding flaoting point underflow error by taking log
                 log(label + "icity of " + word + ": " + wordicity);
-            }
-            scores[label] = 1 / (1 + Math.exp(logSum));
+            }//end of look at each word loop
+            
+            scores[label] = 1 / (1 + Math.exp(logSum)); //undo log and get probabilities back in 0,1 range
         }
         return scores;
     };
